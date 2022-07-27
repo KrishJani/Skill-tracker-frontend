@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
 class App extends React.Component {
-  // Constructor
   constructor(props) {
     super(props);
 
@@ -12,9 +11,6 @@ class App extends React.Component {
       criteriaValue: "",
     };
   }
-
-  // ComponentDidMount is used to
-  // execute the code
   componentDidMount() {
     fetch(
       "http://localhost:8080/skill-tracker/api/v1/engineer/admin/Skill/REACT"
@@ -30,11 +26,6 @@ class App extends React.Component {
       });
   }
 
-  //  handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   alert(`The name you entered was`)
-  // }
-
   render() {
     const { DataisLoaded, items } = this.state;
     if (!DataisLoaded)
@@ -46,7 +37,6 @@ class App extends React.Component {
 
     const handleSubmit = (event) => {
       event.preventDefault();
-      //alert(`The name you entered was:${this.state.criteria} `);
       this.setState({ items: [] });
       console.log(this.state.criteria + "    " + this.state.criteriaValue);
       fetch(
@@ -65,14 +55,6 @@ class App extends React.Component {
       <div className="App">
         <h1> Search Employee Based On Critera </h1>
         <form onSubmit={handleSubmit}>
-          {/* <label>Choose Critera :
-                  </label> */}
-          {/* <input 
-                      type="text" 
-                      name="CriteriaName"
-                      value={this.state.criteria}
-                      onChange={(e) => this.setState({criteria:e.target.value})}
-                    /> */}
           <div onChange={(e) => this.setState({ criteria: e.target.value })}>
             <span>Choose criteria :</span>{" "}
             <input type="radio" value="Name" name="crit" /> Name
@@ -93,22 +75,22 @@ class App extends React.Component {
         </form>
 
         {items.map((item) => (
-          // <ol >
-          //     User_asid:{item.id},
-          //     User_Name: { item.name },
-          //     Full_Name: { item.mobile_no },
-          //     User_Email: { item.email }
+          <ol >
+              User_asid:{item.id},
+              User_Name: { item.name },
+              Full_Name: { item.mobile_no },
+              User_Email: { item.email }
 
-          //     {item.skillsList.map((it)=>(
-          //        <ol>
-          //          Skill_id:{it.skid}
-          //          Skill_name:{it.skillname}
-          //          Expertise_Level:{it.expertiselevel}
-          //        </ol>
+              {item.skillsList.map((it)=>(
+                 <ol>
+                   Skill_id:{it.skid}
+                   Skill_name:{it.skillname}
+                   Expertise_Level:{it.expertiselevel}
+                 </ol>
 
-          //     ))}
+              ))}
 
-          //     </ol>
+              </ol>
 
           <table id="employee">
             <tr>
